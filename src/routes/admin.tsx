@@ -19,7 +19,7 @@ type Submission = {
   caption: string | null;
   status: string;
   created_at: string;
-  url?: string;
+  url?: string | null;
 };
 
 function AdminPage() {
