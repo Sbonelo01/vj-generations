@@ -11,6 +11,8 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { Toaster } from "sonner";
+import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 
 function NotFoundComponent() {
   return (
@@ -77,14 +79,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "VJ Generation — Create Memories | Videography & Photography, Durban" },
+      { name: "description", content: "VJ Generation — Weddings, live streaming, live recording, corporate events, traditional functions & business profiling. Based in Westridge, Durban." },
+      { name: "author", content: "VJ Generation" },
+      { property: "og:title", content: "VJ Generation — Create Memories" },
+      { property: "og:description", content: "Cinematic videography & photography in Durban. Weddings, live streaming, corporate events & more." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
       {
@@ -92,6 +93,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: appCss,
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700;900&family=Inter:wght@300;400;500;600;700&family=Dancing+Script:wght@600&display=swap",
+      },
     ],
   }),
   shellComponent: RootShell,
@@ -119,8 +126,14 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <div className="min-h-screen flex flex-col bg-background text-foreground">
+        <SiteHeader />
+        <main className="flex-1">
+          <Outlet />
+        </main>
+        <SiteFooter />
+        <Toaster theme="dark" position="top-center" richColors />
+      </div>
     </QueryClientProvider>
   );
 }
