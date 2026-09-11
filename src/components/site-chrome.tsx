@@ -116,7 +116,7 @@ export function SiteFooter() {
           <ul className="space-y-3 text-sm text-muted-foreground">
             <li className="flex gap-3"><MapPin size={16} className="text-gold shrink-0 mt-0.5" /> 20 Concord Avenue, Westridge, Durban 4000</li>
             <li className="flex gap-3"><Mail size={16} className="text-gold shrink-0 mt-0.5" /> hello@vjgenerations.co.za</li>
-            <li className="flex gap-3"><Phone size={16} className="text-gold shrink-0 mt-0.5" /> Available on request</li>
+            <li className="flex gap-3"><Phone size={16} className="text-gold shrink-0 mt-0.5" /> 081 060 0569 / 067 138 1015</li>
           </ul>
         </div>
         <div>
