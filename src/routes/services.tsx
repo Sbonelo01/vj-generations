@@ -128,7 +128,7 @@ const umembesoPackages: Pkg[] = [
   },
 ];
 
-function PackageCard({ pkg }: { pkg: Pkg }) {
+function PackageCard({ pkg, group }: { pkg: Pkg; group: string }) {
   return (
     <div
       className={`relative p-8 rounded-2xl bg-card border transition flex flex-col ${
@@ -155,6 +155,7 @@ function PackageCard({ pkg }: { pkg: Pkg }) {
       </ul>
       <Link
         to="/contact"
+        search={{ pkg: `${group} — ${pkg.name} (${pkg.price})` }}
         className={`mt-8 inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full text-sm font-semibold transition ${
           pkg.featured
             ? "text-primary-foreground hover:brightness-110"
@@ -195,7 +196,7 @@ function PricingGroup({
         </div>
         <div className="grid gap-6 md:grid-cols-3">
           {packages.map((p) => (
-            <PackageCard key={p.name} pkg={p} />
+            <PackageCard key={p.name} pkg={p} group={title} />
           ))}
         </div>
       </div>
