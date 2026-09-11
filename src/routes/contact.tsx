@@ -26,6 +26,19 @@ function ContactPage() {
         <p className="text-muted-foreground mt-3 max-w-xl mx-auto">Tell us about your event and we'll come back with ideas and a quote.</p>
       </div>
 
+      {pkg && (
+        <div className="mb-8 flex items-center gap-4 p-5 rounded-2xl border border-gold/50 bg-gold/10">
+          <div className="p-3 rounded-full text-primary-foreground shrink-0" style={{ background: "var(--gradient-gold)" }}>
+            <PackageCheck size={20} />
+          </div>
+          <div>
+            <div className="text-xs uppercase tracking-widest text-gold">Your selected package</div>
+            <div className="font-semibold text-lg">{pkg}</div>
+            <div className="text-sm text-muted-foreground">Complete the form below and we'll confirm availability for your date.</div>
+          </div>
+        </div>
+      )}
+
       <div className="grid lg:grid-cols-2 gap-10">
         <div className="p-8 rounded-2xl bg-card border border-border space-y-6">
           <Info icon={MapPin} title="Studio">
@@ -34,7 +47,7 @@ function ContactPage() {
           <Info icon={Mail} title="Email">
             <a href="mailto:hello@vjgenerations.co.za" className="hover:text-gold">hello@vjgenerations.co.za</a>
           </Info>
-          <Info icon={Phone} title="Phone">Available on request via email</Info>
+          <Info icon={Phone} title="Phone">081 060 0569 / 067 138 1015</Info>
           <Info icon={Clock} title="Hours">Mon – Sat · 09:00 – 18:00<br />Events on Sundays by arrangement</Info>
         </div>
 
@@ -44,7 +57,7 @@ function ContactPage() {
             e.preventDefault();
             const f = new FormData(e.currentTarget);
             const body = `Name: ${f.get("name")}%0D%0APhone: ${f.get("phone")}%0D%0AEvent: ${f.get("event")}%0D%0A%0D%0A${f.get("msg")}`;
-            window.location.href = `mailto:hello@vjgenerations.co.za?subject=Booking enquiry&body=${body}`;
+            window.location.href = `mailto:hello@vjgenerations.co.za?subject=${encodeURIComponent(pkg ? `Booking enquiry: ${pkg}` : "Booking enquiry")}&body=${body}`;
           }}
         >
           <Field name="name" label="Your name" required />
