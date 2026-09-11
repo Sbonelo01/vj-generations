@@ -1,7 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { MapPin, Mail, Phone, Clock } from "lucide-react";
+import { MapPin, Mail, Phone, Clock, PackageCheck } from "lucide-react";
 
 export const Route = createFileRoute("/contact")({
+  validateSearch: (search: Record<string, unknown>): { pkg?: string } => ({
+    pkg: typeof search.pkg === "string" ? search.pkg : undefined,
+  }),
   head: () => ({
     meta: [
       { title: "Contact — VJ Generation, Durban" },
@@ -14,6 +17,7 @@ export const Route = createFileRoute("/contact")({
 });
 
 function ContactPage() {
+  const { pkg } = Route.useSearch();
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 py-20">
       <div className="text-center mb-14">
