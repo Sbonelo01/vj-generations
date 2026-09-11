@@ -63,10 +63,15 @@ function ContactPage() {
           <Field name="name" label="Your name" required />
           <Field name="email" label="Email" type="email" required />
           <Field name="phone" label="Phone" />
-          <Field name="event" label="Event type" placeholder="Wedding, corporate, live stream…" />
+          <Field name="event" label="Event type" placeholder="Wedding, corporate, live stream…" defaultValue={pkg} />
           <label className="block">
             <span className="text-xs uppercase tracking-widest text-muted-foreground mb-2 block">Tell us about your event</span>
-            <textarea name="msg" rows={5} className="w-full p-3 bg-secondary border border-border rounded-lg outline-none focus:border-gold" />
+            <textarea
+              name="msg"
+              rows={5}
+              defaultValue={pkg ? `Hi VJ Generation, I'd like to book the ${pkg}. My event date is ` : ""}
+              className="w-full p-3 bg-secondary border border-border rounded-lg outline-none focus:border-gold"
+            />
           </label>
           <button className="w-full py-3 rounded-full text-primary-foreground font-semibold" style={{ background: "var(--gradient-gold)", boxShadow: "var(--shadow-gold)" }}>
             Send enquiry
@@ -100,11 +105,11 @@ function Info({ icon: Icon, title, children }: { icon: React.ElementType; title:
   );
 }
 
-function Field({ name, label, type = "text", placeholder, required }: { name: string; label: string; type?: string; placeholder?: string; required?: boolean }) {
+function Field({ name, label, type = "text", placeholder, defaultValue, required }: { name: string; label: string; type?: string; placeholder?: string; defaultValue?: string; required?: boolean }) {
   return (
     <label className="block">
       <span className="text-xs uppercase tracking-widest text-muted-foreground mb-2 block">{label}{required && " *"}</span>
-      <input name={name} type={type} required={required} placeholder={placeholder}
+      <input name={name} type={type} required={required} placeholder={placeholder} defaultValue={defaultValue}
         className="w-full p-3 bg-secondary border border-border rounded-lg outline-none focus:border-gold" />
     </label>
   );
